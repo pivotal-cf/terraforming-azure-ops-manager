@@ -56,9 +56,8 @@ resource "azurerm_virtual_machine" "ops_manager_vm" {
   delete_os_disk_on_termination = "true"
 
   storage_os_disk {
-    name          = "opsman-disk.vhd"
+    name          = "myosdisk1"
     caching       = "ReadWrite"
-    os_type       = "linux"
     create_option = "FromImage"
     disk_size_gb  = "150"
     managed_disk_type = "Standard_LRS"
