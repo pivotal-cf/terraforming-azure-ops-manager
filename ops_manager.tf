@@ -63,6 +63,7 @@ resource "azurerm_virtual_machine" "ops_manager_vm" {
     os_type       = "linux"
     create_option = "FromImage"
     disk_size_gb  = "150"
+    managed_disk_type = "Standard_LRS"
   }
 
   os_profile {
