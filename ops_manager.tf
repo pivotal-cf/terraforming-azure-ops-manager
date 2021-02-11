@@ -60,6 +60,7 @@ resource "azurerm_virtual_machine" "ops_manager_vm" {
     caching       = "ReadWrite"
     create_option = "FromImage"
     disk_size_gb  = "150"
+    managed_disk_id = "${azurerm_managed_disk.managedDisk.id}"
     managed_disk_type = "Standard_LRS"
   }
 
