@@ -56,11 +56,9 @@ resource "azurerm_virtual_machine" "ops_manager_vm" {
   delete_os_disk_on_termination = "true"
 
   storage_os_disk {
-    name          = "myosdisk1"
+    name          = "myosdisk2"
     caching       = "ReadWrite"
     create_option = "FromImage"
-    disk_size_gb  = "150"
-    managed_disk_id = "${azurerm_managed_disk.managedDisk.id}"
     managed_disk_type = "Standard_LRS"
   }
 
