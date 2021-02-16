@@ -49,8 +49,8 @@ resource "azurerm_network_interface" "optional_ops_manager_nic" {
 resource "azurerm_image" "ops_manager_image" {
   name                = "ops_manager_image"
   location            = "${var.location}"
-  resource_group_name = "${var.resource_group_name}"
-  count               = "${var.vm_count}"
+  resource_group_name = "${azurerm_resource_group.pcf_resource_group.name}"
+  count               = "1
 
   os_disk {
     os_type  = "Linux"
