@@ -46,6 +46,20 @@ resource "azurerm_network_interface" "optional_ops_manager_nic" {
   }
 }
 
+resource "azurerm_image" "ops_manager_image" {
+  name                = "ops_manager_image"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+  count               = "${var.vm_count}"
+
+  os_disk {
+    os_type  = "Linux"
+    os_state = "Generalized"
+    blob_uri = "${azurerm_storage_blob.ops_manager_image.url}"
+    size_gb  = 150
+  }
+}
+
 resource "azurerm_virtual_machine" "ops_manager_vm" {
   name                          = "${var.env_name}-ops-manager-vm"
   depends_on                    = ["azurerm_network_interface.ops_manager_nic", "azurerm_storage_blob.ops_manager_image"]
@@ -55,9 +69,12 @@ resource "azurerm_virtual_machine" "ops_manager_vm" {
   vm_size                       = "${var.ops_manager_vm_size}"
   delete_os_disk_on_termination = "true"
 
+  storage_image_reference {
+    id = "${azurerm_image.ops_manager_image.id}"
+  }
+
   storage_os_disk {
     name          = "opsman-disk.vhd"
-    image_uri     = "${azurerm_storage_blob.ops_manager_image.url}"
     caching       = "ReadWrite"
     os_type       = "linux"
     create_option = "FromImage"
