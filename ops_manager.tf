@@ -57,12 +57,12 @@ resource "azurerm_virtual_machine" "ops_manager_vm" {
 
   storage_os_disk {
     name          = "opsman-disk.vhd"
-    vhd_uri       = "${azurerm_storage_account.ops_manager_storage_account.primary_blob_endpoint}${azurerm_storage_container.ops_manager_storage_container.name}/opsman-disk.vhd"
     image_uri     = "${azurerm_storage_blob.ops_manager_image.url}"
     caching       = "ReadWrite"
     os_type       = "linux"
     create_option = "FromImage"
     disk_size_gb  = "150"
+    managed_disk_type = "Standard_LRS"
   }
 
   os_profile {
