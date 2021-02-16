@@ -55,7 +55,7 @@ resource "azurerm_image" "ops_manager_image" {
   os_disk {
     os_type  = "Linux"
     os_state = "Generalized"
-    blob_uri = "https://opsmanagerwestus.blob.core.windows.net/images/ops-manager-2.10.3-build.127.vhd"
+    blob_uri = "https://opsmanagerciimagestorage.blob.core.windows.net/system/Microsoft.Compute/Images/images/opsmanager-osDisk.509c0c28-b380-4732-8a9f-dc1428ca977a.vhd"
     size_gb  = 150
   }
 }
