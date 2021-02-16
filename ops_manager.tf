@@ -50,7 +50,7 @@ resource "azurerm_image" "ops_manager_image" {
   name                = "ops_manager_image"
   location            = "${var.location}"
   resource_group_name = "${azurerm_resource_group.pcf_resource_group.name}"
-  count               = "1
+  count               = 1
 
   os_disk {
     os_type  = "Linux"
