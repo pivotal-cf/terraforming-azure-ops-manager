@@ -186,6 +186,7 @@ output "cf_storage_account_name" {
 
 output "cf_storage_account_access_key" {
   value = azurerm_storage_account.cf_storage_account.primary_access_key
+  sensitive = true
 }
 
 output "cf_droplets_storage_container" {

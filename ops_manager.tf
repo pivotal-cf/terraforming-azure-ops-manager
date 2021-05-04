@@ -98,7 +98,7 @@ resource "azurerm_virtual_machine" "optional_ops_manager_vm" {
   storage_os_disk {
     name          = "optional-opsman-disk.vhd"
     vhd_uri       = "${azurerm_storage_account.ops_manager_storage_account.primary_blob_endpoint}${azurerm_storage_container.ops_manager_storage_container.name}/optional-opsman-disk.vhd"
-    image_uri     = azurerm_storage_blob.optional_ops_manager_image.url
+    image_uri     = azurerm_storage_blob.optional_ops_manager_image[0].url
     caching       = "ReadWrite"
     os_type       = "linux"
     create_option = "FromImage"
