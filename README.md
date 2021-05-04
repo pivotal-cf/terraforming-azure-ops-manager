@@ -93,14 +93,6 @@ dns_subdomain         = ""
 - location: **(required)** Azure location to stand up environment in
 - dns_suffix: **(required)** Domain to add environment subdomain to
 
-### Optional
-
-When deploying the isolation segments tile you can optionally route traffic through
-a separate domain and load balancer by specifying:
-
-- isolation_segment: **(default false)** Creates a DNS record and load balancer for
-isolation segment network traffic when set to true.
-
 ## Running
 
 Note: please make sure you have created the `terraform.tfvars` file above as mentioned.
