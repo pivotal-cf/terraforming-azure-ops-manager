@@ -1,16 +1,16 @@
 resource "azurerm_public_ip" "ops_manager_public_ip" {
-  name                         = "${var.env_name}-ops-manager-public-ip"
-  location                     = var.location
-  resource_group_name          = azurerm_resource_group.pcf_resource_group.name
-  public_ip_address_allocation = "static"
+  name                = "${var.env_name}-ops-manager-public-ip"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.pcf_resource_group.name
+  allocation_method   = "static"
 }
 
 resource "azurerm_public_ip" "optional_ops_manager_public_ip" {
-  name                         = "${var.env_name}-optional-ops-manager-public-ip"
-  location                     = var.location
-  resource_group_name          = azurerm_resource_group.pcf_resource_group.name
-  public_ip_address_allocation = "static"
-  count                        = min(length(split("", var.optional_ops_manager_image_uri)), 1)
+  name                = "${var.env_name}-optional-ops-manager-public-ip"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.pcf_resource_group.name
+  allocation_method   = "static"
+  count               = min(length(split("", var.optional_ops_manager_image_uri)), 1)
 }
 
 resource "azurerm_network_interface" "ops_manager_nic" {
@@ -47,7 +47,7 @@ resource "azurerm_network_interface" "optional_ops_manager_nic" {
 }
 
 resource "azurerm_virtual_machine" "ops_manager_vm" {
-  name = "${var.env_name}-ops-manager-vm"
+  name       = "${var.env_name}-ops-manager-vm"
   depends_on = [
     azurerm_network_interface.ops_manager_nic,
     azurerm_storage_blob.ops_manager_image,
@@ -84,7 +84,7 @@ resource "azurerm_virtual_machine" "ops_manager_vm" {
 }
 
 resource "azurerm_virtual_machine" "optional_ops_manager_vm" {
-  name = "${var.env_name}-optional-ops-manager-vm"
+  name       = "${var.env_name}-optional-ops-manager-vm"
   depends_on = [
     azurerm_network_interface.optional_ops_manager_nic,
     azurerm_storage_blob.optional_ops_manager_image,
