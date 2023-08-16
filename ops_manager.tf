@@ -2,14 +2,14 @@ resource "azurerm_public_ip" "ops_manager_public_ip" {
   name                = "${var.env_name}-ops-manager-public-ip"
   location            = var.location
   resource_group_name = azurerm_resource_group.pcf_resource_group.name
-  allocation_method   = "static"
+  allocation_method   = "Static"
 }
 
 resource "azurerm_public_ip" "optional_ops_manager_public_ip" {
   name                = "${var.env_name}-optional-ops-manager-public-ip"
   location            = var.location
   resource_group_name = azurerm_resource_group.pcf_resource_group.name
-  allocation_method   = "static"
+  allocation_method   = "Static"
   count               = min(length(split("", var.optional_ops_manager_image_uri)), 1)
 }
 

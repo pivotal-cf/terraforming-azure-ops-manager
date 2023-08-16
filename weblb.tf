@@ -2,7 +2,7 @@ resource "azurerm_public_ip" "web-lb-public-ip" {
   name                = "web-lb-public-ip"
   location            = var.location
   resource_group_name = azurerm_resource_group.pcf_resource_group.name
-  allocation_method   = "static"
+  allocation_method   = "Static"
   sku                 = "Standard"
 }
 
